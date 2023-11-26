@@ -6,4 +6,5 @@ router.get("/", TaskController.getAllTasks);
 router.get("/:id", TaskController.getSingleTask);
 router.patch("/:id", TaskController.updateSingleTask);
 router.delete("/:id", TaskController.deleteSingleTask);
+router.get("/analytics/completed", TaskController.getCompletedTasks);
 export const TaskRoutes = router;

@@ -41,7 +41,6 @@ const getSingleTask = async (req: Request, res: Response) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 //update a task
 const updateSingleTask = async (req: Request, res: Response) => {
   try {
@@ -57,7 +56,6 @@ const updateSingleTask = async (req: Request, res: Response) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 // delete a single task
 const deleteSingleTask = async (req: Request, res: Response) => {
   try {
@@ -72,10 +70,26 @@ const deleteSingleTask = async (req: Request, res: Response) => {
     res.status(500).json({ error: error.message });
   }
 };
+// analytics on completed tasks
+const getCompletedTasks = async (req: Request, res: Response) => {
+  try {
+    const day = Number(req.query.day);
+    // console.log(day);
+    const result = await TaskService.getCompletedTasks(day);
+    res.json({
+      success: true,
+      message: "Successfully retrieved completed tasks",
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+};
 export const TaskController = {
   addNewTask,
   getAllTasks,
   getSingleTask,
   updateSingleTask,
   deleteSingleTask,
+  getCompletedTasks,
 };

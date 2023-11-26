@@ -27,10 +27,22 @@ const deleteSingleTask = async (id: string) => {
   const result = await Task.findOneAndDelete({ _id: id });
   return result;
 };
+
+// get completed tasks
+const getCompletedTasks = async (day: number) => {
+  const filteredDate = new Date();
+  filteredDate.setDate(filteredDate.getDate() - day || 7);
+  const result = await Task.find({
+    completionStatus: "done",
+    dueDate: { $gte: filteredDate },
+  });
+  return result;
+};
 export const TaskService = {
   addNewTask,
   getAllTasks,
   getSingleTask,
   updateSingleTask,
   deleteSingleTask,
+  getCompletedTasks,
 };
