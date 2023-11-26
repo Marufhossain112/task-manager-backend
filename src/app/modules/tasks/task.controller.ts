@@ -42,8 +42,25 @@ const getSingleTask = async (req: Request, res: Response) => {
   }
 };
 
+//update a task
+const updateTask = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    const payload = req.body;
+    const result = await TaskService.updateTask(id, payload);
+    res.json({
+      success: true,
+      message: "Successfully updated a task",
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const TaskController = {
   addNewTask,
   getAllTasks,
   getSingleTask,
+  updateTask,
 };

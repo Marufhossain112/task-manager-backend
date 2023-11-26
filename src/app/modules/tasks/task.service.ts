@@ -15,8 +15,16 @@ const getSingleTask = async (id: string) => {
   const result = await Task.findById(id);
   return result;
 };
+// update a single task
+const updateTask = async (id: string, payload: any) => {
+  const result = await Task.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  return result;
+};
 export const TaskService = {
   addNewTask,
   getAllTasks,
   getSingleTask,
+  updateTask,
 };
