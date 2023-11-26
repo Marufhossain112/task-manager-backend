@@ -43,11 +43,11 @@ const getSingleTask = async (req: Request, res: Response) => {
 };
 
 //update a task
-const updateTask = async (req: Request, res: Response) => {
+const updateSingleTask = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const payload = req.body;
-    const result = await TaskService.updateTask(id, payload);
+    const result = await TaskService.updateSingleTask(id, payload);
     res.json({
       success: true,
       message: "Successfully updated a task",
@@ -58,9 +58,24 @@ const updateTask = async (req: Request, res: Response) => {
   }
 };
 
+// delete a single task
+const deleteSingleTask = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    const result = await TaskService.deleteSingleTask(id);
+    res.json({
+      success: true,
+      message: "Successfully deleted a single task",
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+};
 export const TaskController = {
   addNewTask,
   getAllTasks,
   getSingleTask,
-  updateTask,
+  updateSingleTask,
+  deleteSingleTask,
 };

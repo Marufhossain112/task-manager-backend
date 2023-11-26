@@ -15,16 +15,22 @@ const getSingleTask = async (id: string) => {
   const result = await Task.findById(id);
   return result;
 };
-// update a single task
-const updateTask = async (id: string, payload: any) => {
+// update a  task
+const updateSingleTask = async (id: string, payload: any) => {
   const result = await Task.findOneAndUpdate({ _id: id }, payload, {
     new: true,
   });
+  return result;
+};
+// delete a  task
+const deleteSingleTask = async (id: string) => {
+  const result = await Task.findOneAndDelete({ _id: id });
   return result;
 };
 export const TaskService = {
   addNewTask,
   getAllTasks,
   getSingleTask,
-  updateTask,
+  updateSingleTask,
+  deleteSingleTask,
 };
