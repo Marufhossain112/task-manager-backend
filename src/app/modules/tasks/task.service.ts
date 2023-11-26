@@ -12,11 +12,19 @@ const getAllTasks = async () => {
 };
 // retrieve a single task
 const getSingleTask = async (id: string) => {
+  const isExist = await Task.findById(id);
+  if (!isExist) {
+    throw new Error("No task found");
+  }
   const result = await Task.findById(id);
   return result;
 };
 // update a  task
 const updateSingleTask = async (id: string, payload: any) => {
+  const isExist = await Task.findById(id);
+  if (!isExist) {
+    throw new Error("No task found");
+  }
   const result = await Task.findOneAndUpdate({ _id: id }, payload, {
     new: true,
   });
@@ -24,6 +32,10 @@ const updateSingleTask = async (id: string, payload: any) => {
 };
 // delete a  task
 const deleteSingleTask = async (id: string) => {
+  const isExist = await Task.findById(id);
+  if (!isExist) {
+    throw new Error("No task found");
+  }
   const result = await Task.findOneAndDelete({ _id: id });
   return result;
 };
