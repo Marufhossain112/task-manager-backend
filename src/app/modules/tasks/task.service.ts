@@ -10,7 +10,13 @@ const getAllTasks = async () => {
   const result = await Task.find({});
   return result;
 };
+// retrieve a single task
+const getSingleTask = async (id: string) => {
+  const result = await Task.findById(id);
+  return result;
+};
 export const TaskService = {
   addNewTask,
   getAllTasks,
+  getSingleTask,
 };
