@@ -132,3 +132,20 @@ To run tests, run the following command
 
 **Server:** Node, Express
 
+
+## Example data
+
+This is the example data for creating a task.
+
+```bash
+  {
+  "title": "Swimming",
+  "description": "Swimming in order to improve your skillset.",
+  "assignedUser": "Maruf Hossain",
+  "dueDate": "2023-11-23T23:59:59.000Z",
+  "completionStatus": "done"
+}
+
+
+```
+
