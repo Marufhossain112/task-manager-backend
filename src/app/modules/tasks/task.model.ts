@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const taskSchema = new Schema({
-  title: { type: String, required: true, unique: true },
+  title: { type: String, required: true },
   description: { type: String, required: true },
   assignedUser: { type: String, required: true },
   dueDate: { type: Date, required: true },
